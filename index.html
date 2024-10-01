@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keystrokes Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #EDEEC0;
+            color: #433E0E;
+            padding: 20px;
+        }
+        h1 {
+            color: #7C9082;
+        }
+    </style>
+</head>
+<body>
+    <h1>Your Keystrokes</h1>
+    <div id="keystrokes"></div>
+
+    <script>
+        async function fetchKeystrokes() {
+            const response = await fetch('keylog_data.json');  // Ensure this matches your path
+            const data = await response.json();
+            const keystrokesDiv = document.getElementById('keystrokes');
+            keystrokesDiv.innerHTML = data.keystrokes.join(' ');
+        }
+
+        fetchKeystrokes();
+        setInterval(fetchKeystrokes, 5000); // Refresh every 5 seconds
+    </script>
+</body>
+</html>
